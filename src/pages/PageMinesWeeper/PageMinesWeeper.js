@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import MinesWeeperBoard from '../components/MinesWeeperBoard/MinesWeeperBoard';
-import TopBar from '../components/TopBar/TopBar';
+import React, { useState } from 'react';
+import MinesWeeperBoard from '../../components/MinesWeeperBoard/MinesWeeperBoard';
+import TopBar from '../../components/TopBar/TopBar';
 
 const PageMinesWeeper = () => {
 	const [rows, setRows] = useState(10);
@@ -16,19 +16,19 @@ const PageMinesWeeper = () => {
 	return (
 		<div>
 			<TopBar
-				triggerTimer={triggerTimer}
 				setRows={setRows}
 				setColumns={setColumns}
 				setPercentageOfBombs={setPercentageOfBombs}
-				percentageOfBombs={percentageOfBombs}
 				setTriggerResetGame={setTriggerResetGame}
+				percentageOfBombs={percentageOfBombs}
+				triggerTimer={triggerTimer}
 			/>
 			<MinesWeeperBoard
-				setTriggerTimer={setTriggerTimer}
 				rows={rows}
 				columns={columns}
 				percentageOfBombs={percentageOfBombs}
 				triggerResetGame={triggerResetGame}
+				setTriggerTimer={setTriggerTimer}
 			/>
 		</div>
 	);

@@ -36,7 +36,7 @@ const TopBar = ({
 	const handleRestartButton = () => {
 		setIsLoading(true);
 		setTimeout(() => {
-			setTriggerResetGame((old) => !old);
+			setTriggerResetGame((oldValue) => !oldValue);
 			setIsLoading(false);
 		}, 300);
 	};
