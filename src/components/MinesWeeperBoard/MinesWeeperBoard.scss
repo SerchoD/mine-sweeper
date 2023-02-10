@@ -1,0 +1,108 @@
+.main-container {
+    width: auto;
+    height: auto;
+
+    border-top: 4px solid rgb(87, 87, 87);
+    border-left: 4px solid rgb(78, 78, 78);
+    border-right: 4px solid rgb(48, 48, 48);
+    border-bottom: 4px solid rgb(37, 37, 37);
+
+    padding: 2px;
+    margin: 100px;
+    position: relative;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
+
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+
+    .game-over-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        // background-color: rgba(0, 0, 0, 0.5);
+
+        width: 100%;
+        height: 100%;
+
+        .game-over-text {
+            position: absolute;
+            top: -70px;
+
+            white-space: nowrap;
+            font-size: 30px;
+            color: darkred;
+            text-shadow: 3px 3px 5px black;
+            text-align: center;
+        }
+    }
+
+    .game-won-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        .game-won-text {
+            position: absolute;
+            top: -70px;
+
+            white-space: nowrap;
+            font-size: 30px;
+            color: rgb(0, 151, 0);
+            text-shadow: 3px 3px 5px black;
+            text-align: center;
+        }
+    }
+
+    .row {
+        display: flex;
+
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 15px;
+            color: white;
+            font-weight: bold;
+
+            width: 15px;
+            height: 15px;
+
+            border-top: 4px solid rgb(107, 107, 107);
+            border-left: 4px solid rgb(99, 99, 99);
+            border-right: 4px solid rgb(48, 48, 48);
+            border-bottom: 4px solid rgb(37, 37, 37);
+
+            background-color: #494949;
+            transition: opacity .05s ease-in-out;
+        }
+
+        .cell:hover {
+            opacity: .5;
+        }
+
+        .cell-revealed {
+            background-color: #212121;
+            border: 1px solid rgb(41, 41, 41);
+            width: 21px;
+            height: 21px;
+        }
+
+    }
+
+}
