@@ -43,7 +43,7 @@ const TopBar = ({
 
 	return (
 		<div className='topbar-container'>
-			<Timer triggerTimer={triggerTimer} />
+			{/* <Timer triggerTimer={triggerTimer} /> */}
 			<div className='topbar-select'>
 				<label htmlFor='rows'>Rows</label>
 				<select
