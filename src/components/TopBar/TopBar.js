@@ -42,6 +42,7 @@ const TopBar = ({
 
 	return (
 		<div className='topbar-container'>
+			<h1>TEST de seguridad</h1>
 			<Timer triggerTimer={triggerTimer} />
 			<div className='topbar-select'>
 				<label htmlFor='rows'>Size</label>
