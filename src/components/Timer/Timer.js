@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Timer.scss';
 
 const Timer = ({ triggerTimer }) => {
 	const [isRunning, setIsRunning] = useState(false);
@@ -55,12 +56,10 @@ const Timer = ({ triggerTimer }) => {
 	const hundredthsOfSeconds = Math.floor((currentTime / 10) % 100);
 
 	return (
-		<div>
-			<div>
-				{minutes <= 0 ? '' : minutes + ':'}
-				{seconds < 10 ? `0${seconds}` : seconds}:
-				{hundredthsOfSeconds < 10 ? `0${hundredthsOfSeconds}` : hundredthsOfSeconds}
-			</div>
+		<div className='timer-container'>
+			{minutes <= 0 ? '' : minutes + ':'}
+			{seconds < 10 ? `0${seconds}` : seconds}:
+			{hundredthsOfSeconds < 10 ? `0${hundredthsOfSeconds}` : hundredthsOfSeconds}
 		</div>
 	);
 };
