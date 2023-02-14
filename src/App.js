@@ -1,5 +1,5 @@
 import './App.css';
-import PageMinesWeeper from './pages/PageMinesWeeper/PageMinesWeeper';
+import PageMinesWeeper from './pages/PageMineSweeper/PageMineSweeper';
 
 function App() {
 	return (
