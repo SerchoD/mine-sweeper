@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MinesWeeperBoard from '../../components/MinesWeeperBoard/MinesWeeperBoard';
+import MineSweeperBoard from '../../components/MineSweeperBoard/MineSweeperBoard';
 import TopBar from '../../components/TopBar/TopBar';
 
 const PageMinesWeeper = () => {
@@ -21,7 +21,7 @@ const PageMinesWeeper = () => {
 				difficulty={difficulty}
 				triggerTimer={triggerTimer}
 			/>
-			<MinesWeeperBoard
+			<MineSweeperBoard
 				size={size}
 				difficulty={difficulty}
 				triggerResetGame={triggerResetGame}
