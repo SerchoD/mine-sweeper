@@ -1,8 +1,12 @@
+/* import a new font from src assets fonts*/
+@font-face {
+	font-family: 'digital-7';
+	src: url('../src/assets/fonts/digital-7-mono.ttf');
+}
+
 * {
 	scrollbar-color: #3a4457 #282c34;
 	scrollbar-width: auto;
-
-	/* the same dark scroll bar for chrome */
 }
 ::-webkit-scrollbar {
 	width: 20px;
