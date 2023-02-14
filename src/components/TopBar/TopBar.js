@@ -12,14 +12,13 @@ const generateBackgroundColor = (num) => {
 		color[i] = green[i] + (red[i] - green[i]) * (num / 7);
 	}
 
-	return `rgba(${color[0]},${color[1]},${color[2]})`;
+	return `rgb(${color[0]},${color[1]},${color[2]})`;
 };
 
 const TopBar = ({
-	setRows,
-	setColumns,
-	setPercentageOfBombs,
-	percentageOfBombs,
+	setSize,
+	setDifficulty,
+	difficulty,
 	setTriggerResetGame,
 	triggerTimer,
 }) => {
@@ -43,14 +42,14 @@ const TopBar = ({
 
 	return (
 		<div className='topbar-container'>
-			{/* <Timer triggerTimer={triggerTimer} /> */}
+			<Timer triggerTimer={triggerTimer} />
 			<div className='topbar-select'>
-				<label htmlFor='rows'>Rows</label>
+				<label htmlFor='rows'>Size</label>
 				<select
 					id='rows'
 					className='select-input'
 					onChange={(e) => {
-						setRows(parseInt(e.target.value));
+						setSize(parseInt(e.target.value));
 					}}
 					defaultValue={10}
 				>
@@ -61,32 +60,17 @@ const TopBar = ({
 					))}
 				</select>
 			</div>
-			<div className='topbar-select'>
-				<label htmlFor='columns'>Columns</label>
-				<select
-					id='columns'
-					className='select-input'
-					onChange={(e) => {
-						setColumns(parseInt(e.target.value));
-					}}
-					defaultValue={10}
-				>
-					{generateValues().map((value) => (
-						<option key={value} value={value} className='select-input-options'>
-							{value}
-						</option>
-					))}
-				</select>
-			</div>
+
 			<div className='topbar-select'>
 				<label htmlFor='percentageOfBombs'>Difficulty</label>
 				<select
 					id='percentageOfBombs'
 					className='select-input'
 					onChange={(e) => {
-						setPercentageOfBombs(parseInt(e.target.value));
+						setDifficulty(parseInt(e.target.value));
 					}}
-					style={{ backgroundColor: generateBackgroundColor(percentageOfBombs) }}
+					// make the same color as the option background color for the selected option (the one that is currently selected)
+					style={{ backgroundColor: generateBackgroundColor(difficulty) }}
 					defaultValue={1}
 				>
 					{generateValues(1, 7).map((value) => (

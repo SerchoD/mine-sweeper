@@ -3,9 +3,8 @@ import MinesWeeperBoard from '../../components/MinesWeeperBoard/MinesWeeperBoard
 import TopBar from '../../components/TopBar/TopBar';
 
 const PageMinesWeeper = () => {
-	const [rows, setRows] = useState(10);
-	const [columns, setColumns] = useState(10);
-	const [percentageOfBombs, setPercentageOfBombs] = useState(null);
+	const [size, setSize] = useState(10);
+	const [difficulty, setDifficulty] = useState(1);
 	const [triggerResetGame, setTriggerResetGame] = useState(false);
 	const [triggerTimer, setTriggerTimer] = useState({
 		start: false,
@@ -16,17 +15,15 @@ const PageMinesWeeper = () => {
 	return (
 		<div>
 			<TopBar
-				setRows={setRows}
-				setColumns={setColumns}
-				setPercentageOfBombs={setPercentageOfBombs}
+				setSize={setSize}
+				setDifficulty={setDifficulty}
 				setTriggerResetGame={setTriggerResetGame}
-				percentageOfBombs={percentageOfBombs}
+				difficulty={difficulty}
 				triggerTimer={triggerTimer}
 			/>
 			<MinesWeeperBoard
-				rows={rows}
-				columns={columns}
-				percentageOfBombs={percentageOfBombs}
+				size={size}
+				difficulty={difficulty}
 				triggerResetGame={triggerResetGame}
 				setTriggerTimer={setTriggerTimer}
 			/>

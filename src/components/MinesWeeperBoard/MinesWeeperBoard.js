@@ -1,57 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import './MinesWeeperBoard.scss';
-import { gameBoardGenerator } from '../../utils/gameBoardGenerator';
+import { newGameBoardGenerator } from '../../utils/gameBoardGenerator';
 import { randomHexadecimal as rnd } from '../../utils/random';
 
-const newGameBoardGenerator = ({ rows, columns, percentageOfBombs }) => {
-	if (rows < 2) rows = 2;
-	if (columns < 2) columns = 2;
-
-	if (percentageOfBombs < 1) percentageOfBombs = 1;
-	if (percentageOfBombs > 50) percentageOfBombs = 50;
-
-	return gameBoardGenerator({
-		rows: rows,
-		columns: columns,
-		percentageOfBombs: percentageOfBombs,
-	});
-};
-
-const dificulties = {
-	1: 4,
-	2: 6,
-	3: 10,
-	4: 14,
-	5: 20,
-	6: 24,
-	7: 30,
-};
-
 const MinesWeeperBoard = ({
-	rows,
-	columns,
-	percentageOfBombs,
+	size,
+	difficulty,
 	triggerResetGame,
 	setTriggerTimer,
 }) => {
 	const [gameBoard, setGameBoard] = useState(
 		newGameBoardGenerator({
-			rows,
-			columns,
-			percentageOfBombs: dificulties[percentageOfBombs],
+			size,
+			difficulty,
 		})
 	);
 	const [isFirstClick, setIsFirstClick] = useState(true);
-
 	const [gameOver, setGameOver] = useState(false);
 	const [gameWon, setGameWon] = useState(false);
 
 	const handleResetGame = () => {
 		setGameBoard(
 			newGameBoardGenerator({
-				rows,
-				columns,
-				percentageOfBombs: dificulties[percentageOfBombs],
+				size,
+				difficulty,
 			})
 		);
 		setGameOver(false);
