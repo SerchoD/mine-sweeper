@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import './MinesWeeperBoard.scss';
 import { newGameBoardGenerator } from '../../utils/gameBoardGenerator';
 import { randomHexadecimal as rnd } from '../../utils/random';
@@ -19,7 +19,7 @@ const MinesWeeperBoard = ({
 	const [gameOver, setGameOver] = useState(false);
 	const [gameWon, setGameWon] = useState(false);
 
-	const handleResetGame = () => {
+	const handleResetGame = useCallback(() => {
 		setGameBoard(
 			newGameBoardGenerator({
 				size,
@@ -30,11 +30,11 @@ const MinesWeeperBoard = ({
 		setGameWon(false);
 		setIsFirstClick(true);
 		setTriggerTimer((prevState) => ({ ...prevState, reset: !prevState.reset }));
-	};
+	}, [difficulty, setTriggerTimer, size]);
 
 	useEffect(() => {
 		handleResetGame();
-	}, [triggerResetGame]);
+	}, [triggerResetGame, handleResetGame]);
 
 	const handleCellClick = ({ cell }) => {
 		const { rowIndex: row, columnIndex: column } = cell;
@@ -119,7 +119,7 @@ const MinesWeeperBoard = ({
 		}
 	};
 
-	const handleWinGame = () => {
+	const handleWinGame = useCallback(() => {
 		const isGameWon = gameBoard.every((row) => {
 			return row.every((cell) => {
 				return (
@@ -132,11 +132,11 @@ const MinesWeeperBoard = ({
 			setGameWon(true);
 			setTriggerTimer((prevState) => ({ ...prevState, stop: !prevState.stop }));
 		}
-	};
+	}, [gameBoard, setTriggerTimer]);
 
 	useEffect(() => {
 		handleWinGame();
-	}, [gameBoard]);
+	}, [gameBoard, handleWinGame]);
 
 	return (
 		<div
