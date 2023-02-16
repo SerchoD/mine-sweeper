@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import MinesWeeperBoard from '../../components/MinesWeeperBoard/MinesWeeperBoard';
+import MineSweeperBoard from '../../components/MineSweeperBoard/MineSweeperBoard';
 import TopBar from '../../components/TopBar/TopBar';
 
 const PageMinesWeeper = () => {
 	const [size, setSize] = useState(10);
-	const [difficulty, setDifficulty] = useState(1);
+	const [difficulty, setDifficulty] = useState(3);
 	const [triggerResetGame, setTriggerResetGame] = useState(false);
 	const [triggerTimer, setTriggerTimer] = useState({
 		start: false,
@@ -21,7 +21,7 @@ const PageMinesWeeper = () => {
 				difficulty={difficulty}
 				triggerTimer={triggerTimer}
 			/>
-			<MinesWeeperBoard
+			<MineSweeperBoard
 				size={size}
 				difficulty={difficulty}
 				triggerResetGame={triggerResetGame}
