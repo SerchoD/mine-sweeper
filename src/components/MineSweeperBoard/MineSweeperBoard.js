@@ -4,7 +4,7 @@ import { randomHexadecimal as rndKey } from '../../utils/random';
 import { BOMBSAROUND_COLORS } from '../../constants/colors';
 import './MineSweeperBoard.scss';
 
-const MinesWeeperBoard = ({
+const MineSweeperBoard = ({
 	size,
 	difficulty,
 	triggerResetGame,
@@ -222,4 +222,4 @@ const MinesWeeperBoard = ({
 	);
 };
 
-export default MinesWeeperBoard;
+export default MineSweeperBoard;
