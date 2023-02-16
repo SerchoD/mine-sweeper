@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import './MinesWeeperBoard.scss';
 import { newGameBoardGenerator } from '../../utils/gameBoardGenerator';
-import { randomHexadecimal as rnd } from '../../utils/random';
+import { randomHexadecimal as rndKey } from '../../utils/random';
+import { BOMBSAROUND_COLORS } from '../../constants/colors';
+import './MineSweeperBoard.scss';
 
 const MinesWeeperBoard = ({
 	size,
@@ -18,6 +19,7 @@ const MinesWeeperBoard = ({
 	const [isFirstClick, setIsFirstClick] = useState(true);
 	const [gameOver, setGameOver] = useState(false);
 	const [gameWon, setGameWon] = useState(false);
+	const [gameIsRunning, setGameIsRunning] = useState(!gameWon && !gameOver);
 
 	const handleResetGame = useCallback(() => {
 		setGameBoard(
@@ -46,7 +48,6 @@ const MinesWeeperBoard = ({
 			if (cell.isBomb) {
 				gameBoard[row][column].isBomb = false;
 
-				// evaluate bombs around in the new cell that now it's empty
 				let bombsAround = 0;
 				for (let i = -1; i <= 1; i++) {
 					for (let j = -1; j <= 1; j++) {
@@ -56,6 +57,23 @@ const MinesWeeperBoard = ({
 					}
 				}
 				gameBoard[row][column].bombsAround = bombsAround;
+
+				// evaluate the bombsAround of the cells adjacent to the clicked cell
+				for (let i = -1; i <= 1; i++) {
+					for (let j = -1; j <= 1; j++) {
+						if (gameBoard[row + i]?.[column + j]?.isBomb === false) {
+							let bombsAround = 0;
+							for (let k = -1; k <= 1; k++) {
+								for (let l = -1; l <= 1; l++) {
+									if (gameBoard[row + i + k]?.[column + j + l]?.isBomb) {
+										bombsAround++;
+									}
+								}
+							}
+							gameBoard[row + i][column + j].bombsAround = bombsAround;
+						}
+					}
+				}
 
 				setGameBoard([...gameBoard]);
 			}
@@ -138,6 +156,10 @@ const MinesWeeperBoard = ({
 		handleWinGame();
 	}, [gameBoard, handleWinGame]);
 
+	useEffect(() => {
+		setGameIsRunning(!gameOver && !gameWon);
+	}, [gameOver, gameWon]);
+
 	return (
 		<div
 			className='main-container'
@@ -157,32 +179,14 @@ const MinesWeeperBoard = ({
 			)}
 			{gameBoard?.map((row, rowIndex) => {
 				return (
-					<div key={rnd()} className='row'>
+					<div key={rndKey()} className='row'>
 						{row.map((cell, columnIndex) => {
 							return (
 								<div
-									key={rnd()}
+									key={rndKey()}
 									className={`${cell?.isRevealed ? 'cell cell-revealed' : 'cell'}`}
 									style={{
-										color: cell?.isRevealed
-											? cell?.bombsAround === 1
-												? '#2196F3'
-												: cell?.bombsAround === 2
-												? '#4CAF50'
-												: cell?.bombsAround === 3
-												? '#FFC107'
-												: cell?.bombsAround === 4
-												? '#F44336'
-												: cell?.bombsAround === 5
-												? '#9C27B0'
-												: cell?.bombsAround === 6
-												? '#3F51B5'
-												: cell?.bombsAround === 7
-												? '#009688'
-												: cell?.bombsAround === 8
-												? '#795548'
-												: ''
-											: '',
+										color: BOMBSAROUND_COLORS[cell?.bombsAround],
 									}}
 									onClick={() => {
 										handleCellClick({
@@ -197,10 +201,17 @@ const MinesWeeperBoard = ({
 									(gameOver && cell?.isBomb && cell?.showIcon === '')
 										? '💣'
 										: ''}
-									{cell?.showIcon}
+
 									{cell?.isRevealed && cell?.bombsAround && !cell?.isBomb > 0
 										? cell?.bombsAround
 										: ''}
+									{gameIsRunning && cell?.showIcon}
+
+									{!gameIsRunning && cell?.showIcon === '🚩' && cell?.isBomb ? (
+										<span style={{ filter: 'hue-rotate(160deg)' }}>🚩</span>
+									) : (
+										!gameIsRunning && cell?.showIcon === '🚩' && <span>🚩</span>
+									)}
 								</div>
 							);
 						})}

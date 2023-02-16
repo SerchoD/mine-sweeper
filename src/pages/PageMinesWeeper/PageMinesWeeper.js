@@ -4,7 +4,7 @@ import TopBar from '../../components/TopBar/TopBar';
 
 const PageMinesWeeper = () => {
 	const [size, setSize] = useState(10);
-	const [difficulty, setDifficulty] = useState(1);
+	const [difficulty, setDifficulty] = useState(3);
 	const [triggerResetGame, setTriggerResetGame] = useState(false);
 	const [triggerTimer, setTriggerTimer] = useState({
 		start: false,
