@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
+import { DIFFICULTY_COLORS } from '../../constants/colors';
 import Spinner from '../Spinner/Spinner';
 import Timer from '../Timer/Timer';
 import './TopBar.scss';
-
-const generateBackgroundColor = (num) => {
-	const green = [0, 150, 80];
-	const red = [150, 0, 80];
-
-	let color = [0, 0, 0];
-	for (let i = 0; i < 3; i++) {
-		color[i] = green[i] + (red[i] - green[i]) * (num / 7);
-	}
-
-	return `rgb(${color[0]},${color[1]},${color[2]})`;
-};
 
 const TopBar = ({
 	setSize,
@@ -69,16 +58,15 @@ const TopBar = ({
 					onChange={(e) => {
 						setDifficulty(parseInt(e.target.value));
 					}}
-					// make the same color as the option background color for the selected option (the one that is currently selected)
-					style={{ backgroundColor: generateBackgroundColor(difficulty) }}
-					defaultValue={1}
+					style={{ backgroundColor: DIFFICULTY_COLORS[difficulty] }}
+					defaultValue={difficulty}
 				>
 					{generateValues(1, 7).map((value) => (
 						<option
 							key={value}
 							value={value}
 							className='select-input-options'
-							style={{ backgroundColor: generateBackgroundColor(value) }}
+							style={{ backgroundColor: DIFFICULTY_COLORS[value] }}
 						>
 							{value}
 						</option>
