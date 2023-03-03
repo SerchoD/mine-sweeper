@@ -1,11 +1,11 @@
 import './App.css';
-import PageMinesWeeper from './pages/PageMineSweeper/PageMineSweeper';
+import PageMineSweeper from '../src/pages/PageMineSweeper/PageMineSweeper';
 
 function App() {
 	return (
 		<div className='App'>
 			<header className='App-header'>
-				<PageMinesWeeper />
+				<PageMineSweeper />
 			</header>
 		</div>
 	);
