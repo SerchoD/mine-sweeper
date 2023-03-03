@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MineSweeperBoard from '../../components/MineSweeperBoard/MineSweeperBoard';
 import TopBar from '../../components/TopBar/TopBar';
 
-const PageMinesWeeper = () => {
+const PageMineSweeper = () => {
 	const [size, setSize] = useState(10);
 	const [difficulty, setDifficulty] = useState(3);
 	const [triggerResetGame, setTriggerResetGame] = useState(false);
@@ -31,4 +31,4 @@ const PageMinesWeeper = () => {
 	);
 };
 
-export default PageMinesWeeper;
+export default PageMineSweeper;
