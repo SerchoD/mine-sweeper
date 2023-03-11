@@ -1,11 +1,12 @@
+import React from 'react';
 import './App.css';
-import PageMineSweeper from '../src/pages/PageMineSweeper/PageMineSweeper';
+import RouterApp from './Router/RouterApp';
 
 function App() {
 	return (
 		<div className='App'>
 			<header className='App-header'>
-				<PageMineSweeper />
+				<RouterApp />
 			</header>
 		</div>
 	);

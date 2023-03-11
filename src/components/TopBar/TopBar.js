@@ -75,7 +75,7 @@ const TopBar = ({
 			</div>
 
 			<div className='button reset-button-container'>
-				<button className='button-container' onClick={handleRestartButton}>
+				<button className='button-container text-base' onClick={handleRestartButton}>
 					{isLoading ? <Spinner /> : 'Reset'}
 				</button>
 			</div>
